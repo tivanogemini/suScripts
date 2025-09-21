@@ -58,14 +58,14 @@ constVar(){
 genConf(){
         sleep 5
         cat<<EOF>/var/snap/shadowsocks-libev/common/etc/shadowsocks-libev/config.json
-        {
-                "server":["::0","0.0.0.0"],
-                "server_port":$port,
-                "password":"$passwd",
-                "method":"chacha20-ietf-poly1305",
-                "mode":"tcp_and_udp",
-                "fast_open":false
-        }
+{
+        server:[::0,0.0.0.0],
+        server_port:$port,
+        password:"$passwd",
+        method:chacha20-ietf-poly1305,
+        mode:tcp_and_udp,
+        fast_open:false
+}
 EOF
 }
 
