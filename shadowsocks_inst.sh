@@ -18,6 +18,7 @@ envSet(){
         then
                 echo "env set done,skip"
         else
+                echo net.core.default_qdisc=fq >> /etc/sysctl.conf && echo net.ipv4.tcp_congestion_control=bbr >> /etc/sysctl.conf && sysctl -p
                 apt update -y && apt upgrade -y
                 apt install snap -y
                 apt install jq -y
@@ -65,11 +66,12 @@ genConf(){
                 "mode":"tcp_and_udp",
                 "fast_open":false
         }
-        EOF
+EOF
 }
 
 startSS(){
         systemctl enable snap.shadowsocks-libev.ss-server-daemon.service
+        sleep 5
         systemctl start snap.shadowsocks-libev.ss-server-daemon.service
         systemctl start snap.shadowsocks-libev.ss-server-daemon.service
 
